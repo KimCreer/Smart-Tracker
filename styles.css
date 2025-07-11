@@ -1,0 +1,50 @@
+/* General body styles */
+body {
+  font-family: Arial, sans-serif;
+  width: 200px; /* Adjusted width for a compact popup */
+  padding: 10px;
+  box-sizing: border-box; /* Ensures padding is included in the width */
+  background-color: #f4f4f4; /* Light background color for better visibility */
+}
+
+/* Header styles */
+h1 {
+  font-size: 16px; /* Adjusted font size for compact display */
+  margin-bottom: 10px; /* Margin below header for spacing */
+  color: #333; /* Dark color for better readability */
+  text-align: center; /* Center-align header text */
+}
+
+/* Status block styles */
+.status {
+  margin-bottom: 10px; /* Increased margin for better spacing */
+  padding: 8px; /* Reduced padding for compact view */
+  background-color: #fff; /* White background for status blocks */
+  border-radius: 4px; /* Rounded corners */
+  border: 1px solid #ddd; /* Light border for distinction */
+  display: flex;
+  align-items: center;
+  font-size: 14px; /* Slightly smaller font size for compact design */
+}
+
+/* Icon styles */
+.status-icon {
+  width: 20px; /* Size of icons */
+  height: 20px;
+  margin-right: 10px; /* Spacing between icon and text */
+}
+
+/* Status text styles */
+.status span {
+  font-weight: bold; /* Bold text for status labels */
+  margin-right: 5px; /* Spacing between label and status text */
+}
+
+/* Active and inactive status color */
+.status.active {
+  color: green; /* Green for active status */
+}
+
+.status.inactive {
+  color: red; /* Red for inactive status */
+}

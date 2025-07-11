@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Updated Content-Security-Policy to allow scripts from cdn.jsdelivr.net and cdnjs.cloudflare.com -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; object-src 'self';">
+    <title>Smart Attendance Tracker Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <!-- Include Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">>
+    <script src="libs/xlsx.full.min.js"></script>
+
+
+    <!-- Include Chart.js -->
+    <script src="libs/chart.umd.min.js"></script> <!-- Your Chart.js library -->
+    
+
+</head>
+<body>
+
+    <div id="user-welcome-message"></div>
+
+    <div class="container">
+        <!-- Sidebar -->
+ <div class="sidebar">
+    <h2>Attendance Tracker</h2>
+
+    <!-- Dashboard Overview -->
+    <a href="#" class="sidebar-link">
+        <i class="fa fa-tachometer-alt"></i> Dashboard
+    </a>
+
+    <!-- Attendance Monitoring -->
+    <div class="sidebar-section">
+        <h3>Attendance Monitoring</h3>
+        <a href="#participants" class="sidebar-link">
+            <i class="fa fa-users"></i> Participants
+        </a>
+    </div>
+
+    <!-- Analytics and Insights -->
+    <div class="sidebar-section">
+        <h3>Analytics & Insights</h3>
+        <a href="#charts" class="sidebar-link">
+            <i class="fa fa-chart-pie"></i> Analytics
+        </a>
+    </div>
+
+    <!-- History Section -->
+    <div class="sidebar-section">
+        <h3>History</h3>
+        <a href="#history-section" class="sidebar-link">
+            <i class="fa fa-history"></i> History
+        </a>
+    </div>
+
+    <!-- Data Management -->
+    <div class="sidebar-section">
+        <h3>Data Management</h3>
+        <a href="#participants" class="sidebar-link">
+            <i class="fa fa-download"></i> Reports
+        </a>
+    </div>
+
+</div>
+
+
+
+<div class="main-content">
+    <!-- Navbar -->
+    <div id="navbar">
+        <h1>Smart Attendance Tracker</h1>
+        <!-- Search Bar and Profile Dropdown -->
+        <div class="nav-actions">
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <input type="text" placeholder="Search..." aria-label="Search">
+                <button aria-label="Search"><i class="fa fa-search"></i></button>
+            </div>
+
+            <!-- Profile Dropdown -->
+            <!-- Profile Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-toggle">
+                    <img src="profile-pic.png" alt="Profile" class="profile-pic" id="profile-pic"> 
+                    <span id="user-name">Profile</span> <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="#" id="logout-link"><i class="fa fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+            <header>
+                <h1>Smart Attendance Tracker Dashboard</h1>
+                <p class="subtitle">Real-time meeting insights and analytics</p>
+            </header>
+
+            <section id="summary">
+                <div class="card">
+                    <div class="icon">👥</div> <!-- Icon for Total Participants -->
+                    <h3>Total Participants</h3>
+                    <p id="total-participants">0</p>
+                    <div class="subtext">Participants currently in session</div>
+                </div>
+                <div class="card">
+                    <div class="icon">✋</div> <!-- Icon for Hand Raises -->
+                    <h3>Total Hand Raises</h3>
+                    <p id="total-hand-raises">0</p>
+                    <div class="subtext">Hands raised during the session</div>
+                </div>
+                <div class="card">
+                    <div class="icon">🎤</div> <!-- Icon for Mic Usage -->
+                    <h3>Average Mic Usage</h3>
+                    <p id="average-mic-time">0m 0s</p>
+                    <div class="subtext">Average mic time per participant</div>
+                </div>
+                <div class="card">
+                    <div class="icon">📹</div> <!-- Icon for Camera Usage -->
+                    <h3>Participants with Camera On</h3>
+                    <p id="active-camera-participants">0</p>
+                    <div class="subtext">Participants with active cameras</div>
+                </div>
+            </section>
+
+            <section id="charts">
+                <h2>Analytics</h2>
+                <div class="chart-container">
+                    <h3>Camera Time Distribution</h3>
+                    <canvas id="cameraTimeChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Hand Raise Trends</h3>
+                    <canvas id="handRaiseChart"></canvas>
+                </div>
+            </section>
+
+            <section id="participants">
+                <h2>Participant Stats</h2>
+                <div class="table-container">
+                    <div class="search-bar">
+                        <input type="text" id="search-input" placeholder="Search Participants..." aria-label="Search">
+                    </div>
+                    <table id="participant-details">
+                        <thead>
+                            <tr>
+                                <th class="sortable" data-sort="name">Name <i class="fa fa-sort"></i></th>
+                                <th class="sortable" data-sort="mic-time">Mic Time <i class="fa fa-sort"></i></th>
+                                <th class="sortable" data-sort="hand-raises">Hand Raise Count <i class="fa fa-sort"></i></th>
+                                <th class="sortable" data-sort="session-time">Session Time <i class="fa fa-sort"></i></th>
+                                <th class="sortable" data-sort="attendance-rate">Attendance Rate <i class="fa fa-sort"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody id="participant-table">
+                            <!-- Dynamic Rows -->
+                        </tbody>
+                    </table>
+                    <div id="table-pagination">
+                        <!-- Pagination controls will be dynamically populated -->
+                    </div>
+                </div>
+            </section>
+
+            <section id="camera-participants">
+                <h2>Participants with Camera On</h2>
+                <div class="table-container">
+                    <table id="camera-details">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Camera Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="camera-participant-table">
+                            <!-- Dynamic Rows -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+
+<section id="export-section">
+    <button id="export-button">Export  Spread Sheet</button>
+    <button id="save-button">Save to History</button>
+    <div id="export-feedback" class="hidden"></div>
+</section>
+
+
+
+<section id="history-section">
+    <h2>History</h2>
+    <!-- Button to Display History -->
+    <button id="display-history-button">Display History</button>
+
+    <div class="search-bar">
+        <input type="text" id="history-search-input" placeholder="Search History..." aria-label="Search">
+    </div>
+
+    <div class="table-container">
+        <table id="history-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Timestamp</th>
+                    <th>Participants</th>
+                    <th>Actions</th>
+                    <th>Export Spread Sheet</th>
+                    <th>Delete History</th>
+                </tr>
+            </thead>
+            <tbody id="history-table-body">
+                <!-- History rows will be appended here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Feedback message section -->
+    <div id="feedback-message" class="feedback"></div>
+</section>
+
+
+<!-- Modal for History Details -->
+<div id="history-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-body">
+            <!-- History details will be injected here -->
+        </div>
+    </div>
+</div>
+<!-- Delete Confirmation Modal -->
+<div id="delete-modal" class="modal">
+    <div class="modal-delete">
+        <h3>Are you sure you want to delete this history entry?</h3>
+        <div class="modal-actions-delete">
+            <button id="confirm-delete" class="modal-button">Yes</button>
+            <button id="cancel-delete" class="modal-button">No</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+            <footer>
+                <div class="footer-container">
+                    <p>&copy; 2024 Smart Attendance Tracker. All rights reserved.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fa fa-linkedin"></i></a>
+                        <a href="#" class="social-icon"><i class="fa fa-instagram"></i></a>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+
+
+
+    <!-- Logout Confirmation Modal -->
+<div id="logoutModal" class="modal">
+  <div class="modal-content">
+    <h2>Logout</h2>
+    <p>You have been logged out successfully.</p>
+    <button id="logoutOkButton" class="button">OK</button>
+  </div>
+</div>
+
+<style>
+
+</style>
+
+
+    <script src="js/dashboard.js"></script>
+
+</body>
+</html>

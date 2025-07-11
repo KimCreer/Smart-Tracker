@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Attendance Tracker</title>
+  <link rel="stylesheet" href="css/popup.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="popup-container">
+    <header class="popup-header">
+      <h1><i class="fas fa-chart-line"></i> Smart Attendance Tracker</h1>
+      <div id="user-info" class="user-info">
+        <img id="profile-pic" src="" alt="Profile" class="profile-pic">
+        <span id="user-name"></span>
+      </div>
+    </header>
+
+    <div class="stats-container">
+      <div class="stat-card">
+        <i class="fas fa-users"></i>
+        <div class="stat-info">
+          <span class="stat-value" id="total-participants">0</span>
+          <span class="stat-label">Total Participants</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-hand-paper"></i>
+        <div class="stat-info">
+          <span class="stat-value" id="total-hand-raises">0</span>
+          <span class="stat-label">Hand Raises</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-microphone"></i>
+        <div class="stat-info">
+          <span class="stat-value" id="average-mic-time">0m 0s</span>
+          <span class="stat-label">Average Mic Time</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-video"></i>
+        <div class="stat-info">
+          <span class="stat-value" id="active-cameras">0</span>
+          <span class="stat-label">Active Cameras</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-section">
+      <h2>Participation Overview</h2>
+      <div id="chart-container">
+        <canvas id="dataChart"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-section">
+      <h2>Camera Usage Overview</h2>
+      <div id="camera-chart-container">
+        <canvas id="cameraTimeChart"></canvas>
+      </div>
+    </div>
+
+    <div class="participant-list">
+      <h2><i class="fas fa-users"></i> Active Participants</h2>
+      <div class="search-container">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="participant-search" placeholder="Search participants..." class="search-input">
+      </div>
+      <div id="participant-list-container" class="participant-list-container">
+        <!-- Participant list will be populated dynamically -->
+      </div>
+    </div>
+
+    <div class="participant-list">
+      <h2><i class="fas fa-video"></i> Participants with Camera On</h2>
+      <div class="search-container">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="camera-participant-search" placeholder="Search camera participants..." class="search-input">
+      </div>
+      <div id="camera-participant-list-container" class="participant-list-container">
+        <!-- Inactive participant list will be populated dynamically -->
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <button id="action-button" class="action-button">
+        <i class="fas fa-sign-in-alt"></i> <span id="action-button-text">Login with Google</span>
+      </button>
+    </div>
+
+    <div id="feedback-message" class="feedback-message"></div>
+  </div>
+
+  <script src="libs/chart.umd.min.js"></script>
+  <script src="js/popup.js"></script>
+</body>
+</html>

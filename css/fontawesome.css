@@ -1,0 +1,143 @@
+/*!
+ * Font Awesome Custom Styles
+ * Enhanced styles for Font Awesome icons in the Dashboard
+ */
+
+/* General icon styles */
+.icon-large {
+  font-size: 2rem; /* Large icon size */
+  color: var(--primary-color); /* Use dashboard's primary color */
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth color and transform transition */
+  display: inline-block; /* Ensure icons can have transformations */
+  margin-right: 8px; /* Consistent spacing */
+}
+
+.icon-large:hover {
+  color: var(--highlight-color); /* Mint Green on hover */
+  transform: scale(1.15); /* Slightly larger icon on hover */
+}
+
+/* Icons within Section Headings */
+h2 i {
+  margin-right: 12px; /* Space between icon and heading */
+  color: var(--primary-color); /* Slate Blue for heading icons */
+}
+
+/* Button icons */
+.dark-mode-button i,
+.export-button i {
+  margin-right: 6px; /* Space between icon and button text */
+  font-size: 1.6rem; /* Icon size in buttons */
+  color: var(--neutral-background); /* Neutral background color for contrast */
+}
+
+/* Summary section icons */
+#summary h2 i {
+  color: var(--secondary-color); /* Soft Coral for summary icons */
+  transition: transform 0.4s ease; /* Smooth rotation effect */
+}
+
+#summary h2:hover i {
+  transform: rotate(360deg); /* Full rotation on hover */
+}
+
+/* Chart section icons */
+#charts h2 i {
+  color: var(--highlight-color); /* Mint Green for chart section icons */
+  font-size: 2rem; /* Slightly larger for visibility */
+}
+
+/* Top Participants section */
+#top-participants h2 i {
+  color: var(--secondary-color); /* Soft Coral for top participants icons */
+}
+
+/* Participant Stats section */
+#stats h2 i {
+  color: var(--primary-color); /* Slate Blue for participant stats icons */
+}
+
+/* Filter label styles */
+.filter-container label {
+  color: var(--dark-accent); /* Charcoal Gray for label text */
+  font-weight: bold; /* Bold for emphasis */
+}
+
+/* Table icons */
+.table-container .table th i,
+.table-container .table td i {
+  font-size: 1.3rem; /* Icons in table cells */
+  color: var(--primary-color); /* Slate Blue for table icons */
+}
+
+/* Status icons */
+.status-active {
+  color: var(--highlight-color); /* Mint Green for active status */
+}
+
+.status-inactive {
+  color: var(--secondary-color); /* Soft Coral for inactive status */
+}
+
+/* Animations for status indicators */
+.status-indicator {
+  display: inline-block;
+  transition: transform 0.3s ease; /* Smooth scaling transition */
+}
+
+.status-active:hover .status-indicator,
+.status-inactive:hover .status-indicator {
+  transform: scale(1.2); /* Enlarge on hover */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .icon-large {
+    font-size: 1.5rem; /* Adjust icon size for smaller screens */
+  }
+
+  h2 i {
+    font-size: 1.6rem; /* Adjust heading icon size */
+  }
+
+  .dark-mode-button i,
+  .export-button i {
+    font-size: 1.3rem; /* Adjust button icon size */
+  }
+}
+
+/* Interactive row hover effect */
+.table-container .table tr:hover td i {
+  color: var(--highlight-color); /* Mint Green on row hover */
+  transform: scale(1.1); /* Enlarge icon on row hover */
+}
+
+/* Tooltip styles */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: var(--dark-accent); /* Ensure contrast */
+  color: var(--neutral-background);
+  text-align: center;
+  border-radius: 8px;
+  padding: 6px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 130%; /* Adjust as necessary */
+  left: 50%;
+  margin-left: -70px;
+  opacity: 0;
+  transition: opacity 0.4s ease, visibility 0.4s ease; /* Slightly longer transition */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Added shadow for depth */
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}

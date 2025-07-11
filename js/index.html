@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Battle</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Pokémon Battle Game</h1>
+    
+    <div id="battlefield">
+        <div class="pokemon">
+            <h2>Your Pokémon: <span id="player-name">Pikachu</span></h2>
+            <p>HP: <span id="player-hp">100</span></p>
+        </div>
+        <div class="pokemon">
+            <h2>Wild Pokémon: <span id="enemy-name">Charmander</span></h2>
+            <p>HP: <span id="enemy-hp">100</span></p>
+        </div>
+    </div>
+    
+    <div id="controls">
+        <button onclick="attack()">⚡ Attack</button>
+        <button onclick="heal()">🩹 Heal</button>
+        <button onclick="resetGame()">🔄 Restart</button>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

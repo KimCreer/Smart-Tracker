@@ -1,0 +1,1318 @@
+/* General body and layout styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: row;
+}
+
+/* Header styles */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+header .subtitle {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    color: white;
+    padding-top: 20px;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transition: width 0.3s ease, padding 0.3s ease;
+    z-index: 1000;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+/* Header Style */
+.sidebar h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Sidebar Section Header */
+.sidebar-section h3 {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+/* Sidebar Links */
+.sidebar-link {
+    color: white;
+    padding: 15px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid #34495e;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease, padding-left 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+/* Icons Style */
+.sidebar-link i {
+    font-size: 1.4rem;
+    transition: transform 0.3s ease;
+}
+
+/* Sidebar Link Hover Effects */
+.sidebar-link:hover {
+    background-color: #34495e;
+    padding-left: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-link:hover i {
+    transform: translateX(5px);
+}
+
+.sidebar-link:hover::before {
+    visibility: visible;
+    width: 4px;
+}
+
+/* Active Link */
+.sidebar-link.active {
+    background-color: #1abc9c;
+    padding-left: 30px;
+    box-shadow: 0 4px 10px rgba(26, 188, 156, 0.3);
+}
+
+.sidebar-link.active i {
+    transform: translateX(5px);
+}
+
+/* Sidebar Active Link Indicator */
+.sidebar-link.active::before {
+    visibility: visible;
+    width: 4px;
+    background-color: #1abc9c;
+}
+
+/* Sidebar Section Divider */
+.sidebar-section {
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+/* Responsive Sidebar */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 15px;
+    }
+    .sidebar h2 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+    .sidebar-link {
+        padding: 10px 5px;
+        font-size: 0.9rem;
+    }
+    .sidebar-link i {
+        font-size: 1rem;
+    }
+}
+
+/* Collapsible Sidebar for Mobile */
+.sidebar.collapsed {
+    width: 60px;
+}
+
+.sidebar.collapsed a {
+    padding: 10px 5px;
+    font-size: 0.9rem;
+}
+
+.sidebar.collapsed h2 {
+    display: none;
+}
+
+/* Button to collapse the sidebar */
+.sidebar-toggle-btn {
+    position: fixed;
+    top: 20px;
+    left: 250px;
+    background-color: #1abc9c;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    display: none;
+    z-index: 1050;
+}
+
+/* Sidebar Collapse/Expand Button when collapsed */
+.sidebar.collapsed + .sidebar-toggle-btn {
+    display: block;
+}
+
+/* Sidebar Tooltip on Hover */
+.sidebar-link i {
+    position: relative;
+    cursor: pointer;
+}
+
+.sidebar-link i::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #34495e;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    visibility: hidden;
+}
+
+.sidebar-link i:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Hover Effects on Sections */
+.sidebar-section:hover {
+    background-color: #34495e;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar-section:hover h3 {
+    color: #1abc9c;
+}
+
+/* Active Link Highlight */
+.sidebar-link.active {
+    background-color: #1abc9c;
+    padding-left: 30px;
+}
+
+.sidebar-link.active i {
+    transform: translateX(5px);
+}
+
+/* Active Link Indicator */
+.sidebar-link.active::before {
+    visibility: visible;
+    width: 4px;
+}
+
+
+/* Main content styles */
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    width: 100%;
+}
+
+/* General Navbar Styling */
+#navbar {
+    background: linear-gradient(135deg, #1e272e, #3a3d42); /* Dark gradient background */
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+#navbar h1 {
+    font-size: 2rem;
+    margin: 0;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #ecf0f1;
+    transition: color 0.3s ease;
+}
+
+#navbar h1:hover {
+    color: #1abc9c; /* Accent color */
+}
+
+/* Navbar Actions (Search Bar + Profile) */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Search Bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+    border-radius: 25px;
+    background: #ecf0f1;
+    overflow: hidden;
+    width: 250px; /* Width adjustment */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar input {
+    border: none;
+    padding: 10px 15px;
+    outline: none;
+    font-size: 0.9rem;
+    flex: 1;
+    border-radius: 0;
+}
+
+.search-bar button {
+    background: #1abc9c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 0 25px 25px 0; /* Rounded button */
+}
+
+.search-bar button:hover {
+    background: #16a085;
+}
+
+/* Profile Dropdown */
+/* Profile Dropdown */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    padding: 8px 15px;
+    border-radius: 25px;
+}
+
+.dropdown-toggle:hover {
+    color: #1abc9c;
+    background-color: rgba(26, 188, 156, 0.1); /* Light hover background */
+}
+
+.profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.1); /* Slight zoom effect */
+    border-color: #1abc9c; /* Highlight border on hover */
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    background: #3a3d42;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    visibility: hidden; /* Hidden by default */
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0s 0.3s; /* Delay visibility change */
+    flex-direction: column;
+    min-width: 180px;
+    z-index: 100;
+    overflow: hidden;
+    padding: 5px 0;
+    width: 100%;
+}
+
+.dropdown-menu a {
+    padding: 12px 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dropdown-menu a:hover {
+    background: #1abc9c;
+}
+
+.dropdown-menu a i {
+    font-size: 1.2rem;
+}
+
+/* Show the dropdown menu when hovering over the button or the menu itself */
+.dropdown:hover .dropdown-menu {
+    visibility: visible; /* Make it visible */
+    opacity: 1; /* Fade it in */
+    transition: opacity 0.3s ease, visibility 0s 0s; /* Reset the transition delay */
+}
+
+/* Dropdown Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    #navbar h1 {
+        margin-bottom: 15px;
+        font-size: 1.8rem;
+    }
+
+    .nav-actions {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .search-bar {
+        margin-bottom: 15px;
+        width: 100%;
+    }
+}
+
+
+
+/* Section and Card Styles */
+section {
+    margin-top: 30px;
+    padding: 20px;
+}
+
+#summary {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 20px;
+    flex-wrap: wrap; /* Adjust for smaller screens */
+}
+
+.card {
+    background: linear-gradient(135deg, #ffffff, #f9f9f9);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1 1 calc(25% - 20px); /* Responsive width for 4 cards in a row */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #2c3e50;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 15px; /* Adjust spacing for icons */
+}
+
+.card p {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #27ae60;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.card p:hover {
+    color: #16a085;
+}
+
+/* Add icons */
+.card .icon {
+    font-size: 2.5rem;
+    color: #3498db;
+    margin-bottom: 10px;
+    animation: bounce 1.5s infinite;
+}
+
+/* Add subtext */
+.card .subtext {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 5px;
+}
+
+/* Card Decorative Element */
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 50%;
+    background: linear-gradient(120deg, rgba(46, 204, 113, 0.2), rgba(41, 128, 185, 0.2));
+    transform: rotate(45deg);
+    z-index: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+.card:hover::before {
+    left: 0;
+    transform: rotate(0deg);
+    height: 100%;
+}
+
+/* Ensure content is above the decorative layer */
+.card * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Bouncing animation for icons */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    #summary {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .card {
+        flex: 1;
+        max-width: 100%;
+    }
+}
+
+
+/* Chart Section Styling */
+#charts {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 30px;  /* Increased margin for spacing */
+    gap: 30px;  /* Larger gap between charts */
+    padding: 20px;
+    background: #f4f6f7;  /* Soft background to separate from other sections */
+    border-radius: 8px;
+}
+
+#charts h2 {
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Chart Container Styling */
+.chart-container {
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 48%;
+    margin-bottom: 20px;
+}
+
+.chart-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.chart-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Canvas Styling */
+canvas {
+    width: 100%;
+    max-height: 400px;
+    border-radius: 8px; /* Rounded edges for a cleaner look */
+}
+
+/* Responsive Design for Charts */
+@media (max-width: 768px) {
+    #charts {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .chart-container {
+        max-width: 100%;  /* Full width on small screens */
+    }
+
+    #charts h2 {
+        font-size: 1.8rem;
+    }
+}
+
+
+
+/* Search Bar */
+.search-bar {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.search-bar input {
+    border: 1px solid #7f8c8d;
+    padding: 8px 15px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    outline: none;
+    width: 100%;
+    max-width: 300px;
+}
+
+.search-bar input:focus {
+    border-color: #1abc9c;
+    box-shadow: 0 0 5px rgba(26, 188, 156, 0.5);
+}
+
+/* Table Styling */
+.table-container {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+    overflow-x: visible;
+}
+
+#participants, #camera-participants,#history-section  {
+    margin-bottom: 20px;
+}
+
+#participants h2, #camera-participants h2,#history-section h2{
+    font-size: 1.7rem;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 3px solid #1abc9c;
+    padding-bottom: 10px;
+    text-align: left;
+}
+
+/* Table */
+#participants table, #camera-participants table ,#history-section table{
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Table Headers */
+#participants th, #camera-participants th ,#history-section th {
+    padding: 12px 15px;
+    text-align: center;
+    background: #34495e;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+}
+
+#participants th:hover, #camera-participants th:hover, #history-section th:hover {
+    background-color: #1abc9c;
+}
+
+#participants td, #camera-participants td,#history-section td {
+    padding: 12px 15px;
+    text-align: center;
+    font-size: 1rem;
+    color: #555;
+    border: 1px solid #ddd;
+}
+
+/* Row Hover Effect */
+#participants tbody tr:hover, #camera-participants tbody tr:hover,#history-section tbody tr:hover {
+    background: #f4f4f4;
+    cursor: pointer;
+}
+
+/* Action Column */
+#participants td.actions, #camera-participants td.actions,#history-section td.actions{
+    width: 120px;
+}
+
+/* Action Buttons */
+.actions .btn {
+    padding: 5px 10px;
+    margin: 0 5px;
+    font-size: 1rem;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.actions .btn:hover {
+    background-color: #16a085;
+}
+
+/* Tooltip */
+.actions .btn[title] {
+    position: relative;
+}
+
+.actions .btn[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1abc9c;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    white-space: nowrap;
+}
+
+/* Pagination Controls */
+#table-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#table-pagination button {
+    background-color: #1abc9c;
+    color: white;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#table-pagination button:hover {
+    background-color: #16a085;
+}
+
+/* Sorting */
+.sortable i {
+    margin-left: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.sortable.asc i {
+    transform: rotate(180deg);
+}
+
+.sortable.desc i {
+    transform: rotate(360deg);
+}
+
+/* Loading / Empty States */
+.table-loading {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #1abc9c;
+    padding: 20px;
+}
+
+.table-empty {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #bbb;
+    padding: 20px;
+}
+
+
+
+/* Export Section */
+#export-section {
+    margin-top: 30px;
+    text-align: center;
+    position: relative;
+}
+
+/* Export Button */
+#export-button,#save-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#export-button:hover,#save-button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+/* Export Feedback (after export action) */
+/* Export Feedback */
+#export-feedback {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1abc9c;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#export-feedback.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #export-button,#save-button {
+        font-size: 1.1rem;
+        padding: 10px 20px;
+    }
+}
+
+/* Footer Styles */
+footer {
+    background: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    border-radius: 8px 8px 0 0;
+    margin-top: 30px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+footer p {
+    margin-bottom: 10px;
+}
+
+.social-icons {
+    margin: 15px 0;
+}
+
+.social-icon {
+    color: white;
+    font-size: 1.2rem;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+    color: #1abc9c; /* Accent color for social icons */
+}
+
+.footer-links a {
+    color: #bbb;
+    text-decoration: none;
+    font-size: 0.85rem;
+    margin: 0 10px;
+}
+
+.footer-links a:hover {
+    color: #1abc9c;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    footer {
+        font-size: 0.8rem;
+        padding: 15px;
+    }
+
+    .footer-container {
+        padding: 15px;
+    }
+
+    .social-icons {
+        margin: 10px 0;
+    }
+
+    .social-icon {
+        font-size: 1.5rem;
+    }
+
+    .footer-links {
+        font-size: 0.75rem;
+        margin-top: 10px;
+    }
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        position: relative;
+        height: auto;
+    }
+    .main-content {
+        margin-left: 0;
+    }
+    #navbar {
+        display: block;
+        text-align: center;
+    }
+    .chart-container {
+        max-width: 100%;
+    }
+    #summary {
+        flex-direction: column;
+    }
+    #charts {
+        flex-direction: column;
+    }
+}
+
+
+
+/* Modal Background */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    transition: opacity 0.3s ease;
+}
+
+/* Modal visible state */
+.modal.visible {
+    display: block;
+    opacity: 1;
+}
+
+/* Modal Content */
+.modal-content,#modal-actions {
+    background-color: white;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 800px; /* Max width for large screens */
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Styling for modal body content */
+.modal-body pre {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+    white-space: pre-wrap;  /* Ensures long lines wrap inside the modal */
+}
+
+/* Close Button Style */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Close Button hover/focus effect */
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%;
+    }
+    .modal-body pre {
+        font-size: 14px; /* Adjust text size for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        width: 95%;
+    }
+}
+
+/* Modal styles */
+#history-modal, #delete-modal{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#history-modal.visible,#delete-modal.visible {
+    display: flex;
+}
+
+.modal-header {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-body {
+    background-color: white;
+    padding: 20px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.close-modal-btn {
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Table Styles */
+.participant-table,.camera-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.participant-table th, .participant-table td,.camera-table th,.camera-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.participant-table th,.camera-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.participant-table td,.camera-table thd {
+    background-color: #f9f9f9;
+}
+
+/* Participant row hover effect */
+.participant-table tr:hover,.camera-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Close button styles */
+.close-modal-btn {
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+}
+
+
+
+/* Styling for the Display History button */
+#display-history-button {
+    padding: 8px 16px;
+    font-size: 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+/* Button hover effect */
+#display-history-button:hover {
+    background-color: #0056b3;
+}
+
+/* Export Button Styling */
+.export-button {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.export-button:hover {
+    background-color: #45a049;
+}
+
+
+
+
+
+/* General button styles */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+button i {
+    margin-right: 8px;
+}
+
+/* Hover effect */
+button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+button:active {
+    background-color: #388e3c;
+    transform: translateY(0);
+}
+
+/* Specific styles for the "View Details" button */
+.view-details {
+    background-color: #007bff;
+}
+
+.view-details:hover {
+    background-color: #0056b3;
+}
+
+/* Specific styles for the "Export" button */
+.export-details {
+    background-color: #ffc107;
+}
+
+.export-details:hover {
+    background-color: #e0a800;
+}
+
+
+/* Specific styles for the "Delete" button */
+.delete-entry {
+    background-color: #dc3545;
+}
+
+.delete-entry:hover {
+    background-color: #c82333;
+}
+
+.delete-entry i {
+    margin-right: 8px;
+}
+
+
+
+
+
+
+/* Modal Content */
+.modal-delete {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Modal Action Buttons */
+.modal-actions-delete" {
+    margin-top: 20px;
+}
+
+.modal-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.modal-button:hover {
+    background-color: #0056b3;
+}
+
+/* Cancel Button */
+#cancel-delete {
+    background-color: #dc3545;
+}
+
+#cancel-delete:hover {
+    background-color: #c82333;
+}
+
+
+
+
+.feedback {
+    margin: 15px 0;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    display: none; /* Hidden by default */
+}
+.feedback.success {
+    background-color: #d4edda;
+    color: #155724;
+    display: block;
+}
+.feedback.warning {
+    background-color: #fff3cd;
+    color: #856404;
+    display: block;
+}
+.feedback.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    display: block;
+}
+
+/* Remove overflow-x from table container since modal body handles scrolling */
+.table-container {
+    overflow-x: visible;
+}
